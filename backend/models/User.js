@@ -24,4 +24,6 @@ const UserSchema = new mongoose.Schema({
 
 const User =  mongoose.model('User', UserSchema);
 User.createIndexes();
+
+// todo -> authentication to be done 
 module.exports = User;
