@@ -23,7 +23,6 @@ const UserSchema = new mongoose.Schema({
 })
 
 const User =  mongoose.model('User', UserSchema);
-User.createIndexes();
 
-// todo -> authentication to be done 
+// todo -> validation to be done (using express validator it is done in auth.js)
 module.exports = User;
