@@ -67,6 +67,7 @@ router.post('/login', [
 ], async (req, res) => {
 
     const errors = validationResult(req);
+    // if there are errors return bad request and the errors as well
     if (!errors.isEmpty()) {
         return res.status(400).json({ success, errors: errors.array() });
     }
@@ -77,11 +78,12 @@ router.post('/login', [
     try {
         let user = await User.findOne({ email: email });
 
-        // if user is not found means invalid user is there
+        // if user is not found means invalid user is there (return bad request)
         if (!user) {
             return res.status(400).send({ error: "please try to login with correct credentials" });
         }
 
+        // used to compare password entered by the user and password already present there in the database for that particular user
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
             return res.status(400).send( {error: "Please try to login with correct credentials"} );
