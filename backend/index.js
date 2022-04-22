@@ -8,6 +8,7 @@ app.use(express.json());
 
 connectToMongo();
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/user', require('./routes/users'));
 
 
 

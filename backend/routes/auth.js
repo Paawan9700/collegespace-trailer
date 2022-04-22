@@ -2,6 +2,8 @@ const express = require('express');
 // taking out user modal from /modals/User.js
 const User = require('../models/User');
 
+const _ = require('lodash');
+
 // for validation
 const { body, validationResult } = require('express-validator');
 const router = express.Router();
@@ -10,11 +12,13 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 
 var jwt = require('jsonwebtoken');
+const fetchuser = require('../middleware/fetchuser');
+
 // used to sign the web token
 const JWT_SECRET = "paawanisagoodb$oy";
 
 //everything is handled using router
-// creating a user -> POST method -> "/api/auth/signup" -> login is not required 
+// Route 1 : creating a user -> POST method -> "/api/auth/signup" -> login is not required 
 router.post('/signup', [
     body('email', 'Please Enter a valid email').isEmail(),
     body('name', 'Enter a valid name').isLength({ min: 3 }),
@@ -39,11 +43,11 @@ router.post('/signup', [
         const salt = await bcrypt.genSalt(10);
         const securedPassword = await bcrypt.hash(req.body.password, salt);
         // creating a new user
-        let newuser = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: securedPassword
-        })
+        let newuser = await User.create(_.pick(req.body, [
+            "name", 
+            "email", 
+            "password"
+        ]))
 
         const data = {
             user: {
@@ -60,7 +64,7 @@ router.post('/signup', [
     }
 })
 
-// authenticating a user -> POST method -> "/api/auth/login" -> login is not required
+// Route 2 : authenticating a user -> POST method -> "/api/auth/login" -> login is not required
 router.post('/login', [
     body('email', 'Please Enter a valid email').isEmail(),
     body('password', 'password cnanot be blank').exists()
