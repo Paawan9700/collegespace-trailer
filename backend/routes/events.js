@@ -57,3 +57,40 @@ router.post('/addevent', fetchuser, [
 
 })
 module.exports = router;
+
+//Route : 3 updating notes by the student -> /api/event/updatevent -> login is required
+router.put('/updatevent/:id', fetchuser, async (req, res) => {
+
+    // destructuring things from the req.body json
+    const { title, description, tag } = req.body;
+
+    // create a newEvent object
+    const newEvent = {};
+
+    if (title) {
+        newEvent.title = title;
+    }
+
+    if (description) {
+        newEvent.description = description;
+    }
+
+    if (tag) {
+        newEvent.tag = tag;
+    }
+
+    // now find the event to update and update it
+    let event = await Event.findById(req.params.id);
+
+    if (!event) {
+        return res.status(404).send("Not Found")
+    }
+
+    event = await Event.findByIdAndUpdate(
+        req.params.id,
+        { $set: newEvent },
+        { new: true },
+    )
+
+    res.json({ event });
+});
