@@ -44,8 +44,8 @@ router.post('/signup', [
         const securedPassword = await bcrypt.hash(req.body.password, salt);
         // creating a new user
         let newuser = await User.create(_.pick(req.body, [
-            "name", 
-            "email", 
+            "name",
+            "email",
             "password"
         ]))
 
@@ -90,7 +90,7 @@ router.post('/login', [
         // used to compare password entered by the user and password already present there in the database for that particular user
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
-            return res.status(400).send( {error: "Please try to login with correct credentials"} );
+            return res.status(400).send({ error: "Please try to login with correct credentials" });
         }
 
         const data = {
@@ -101,7 +101,7 @@ router.post('/login', [
 
         // { error: 'please authenticate using a valid token' }
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json( authToken);
+        res.json(authToken);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server error");
