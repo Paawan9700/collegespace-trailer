@@ -1,10 +1,9 @@
 import React, {useContext} from 'react'
-import EventContext from '../context/events/EventContext'
+import { Events } from './Events'
+
 
 export const Home = () => {
-    const context = useContext(EventContext);
-
-    const {events, setevents} = context;
+ 
     return (
         <div>
             <div className="container">
@@ -12,11 +11,11 @@ export const Home = () => {
 
                 <form className='my-3'>
                     <div className="mb-3">
-                        <label for="exampleInputEmail1" className="form-label">Title</label>
+                        <label htmlFor="exampleInputEmail1" className="form-label">Title</label>
                         <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     </div>
                     <div className="mb-3">
-                        <label for="exampleInputPassword1" className="form-label">Description</label>
+                        <label htmlFor="exampleInputPassword1" className="form-label">Description</label>
                         <input type="password" className="form-control" id="exampleInputPassword1" />
                     </div>
                     <div className="mb-3 form-check">
@@ -26,12 +25,7 @@ export const Home = () => {
                 </form>
             </div>
 
-            <div className="container my-3">
-                <h1>All Events</h1>
-                {events.map((event) => {
-                    return event.title;
-                })}
-            </div>
+            <Events />
         </div>
     )
 }
