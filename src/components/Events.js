@@ -4,7 +4,7 @@ import { EventItem } from './EventItem';
 
 export const Events = () => {
     const context = useContext(EventContext);
-    const { events, setevents } = context;
+    const { events } = context;
 
     return (
         <div className="row my-3">
