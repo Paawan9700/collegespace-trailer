@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import EventContext from '../context/events/EventContext'
+import AddEvent from './AddEvent';
 import { EventItem } from './EventItem';
 
 export const Events = () => {
@@ -7,11 +8,15 @@ export const Events = () => {
     const { events } = context;
 
     return (
-        <div className="row my-3">
-            <h1>All Events</h1>
-            {events.map((event) => {
-                return <EventItem event = {event}/>;
-            })}
-        </div>
+        <>
+            <AddEvent />
+            <div className="row my-3">
+                <h1>All Events</h1>
+                {events.map((event) => {
+                    console.log(event._id);
+                    return <EventItem key = {event._id} event={event} />;
+                })}
+            </div>
+        </>
     )
 }
