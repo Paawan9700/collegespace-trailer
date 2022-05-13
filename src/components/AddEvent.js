@@ -9,15 +9,17 @@ const AddEvent = () => {
     const handleClick = (e) => {
         e.preventDefault();
         addEvent(event);
+
+        setevent({ title: "", description: "", tag: "" });
     }
 
     const onChange = (e) => {
-        // spread operator
+        // spread operator (this -> ...)
         setevent({ ...event, [e.target.name]: [e.target.value] })
     }
 
     return (
-        <div>
+        <div className='my-10'>
             <h1>Add New Events</h1>
 
             <form className='my-3'>

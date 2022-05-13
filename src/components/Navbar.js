@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Link, useLocation} from 'react-router-dom'
 
 
@@ -21,14 +21,14 @@ export const Navbar = () => {
                             <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 More
-                            </a>
+                            </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Previous Years Papers</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
+                                <li><Link className="dropdown-item" to="#">Previous Years Papers</Link></li>
+                                <li><Link className="dropdown-item" to="#">Another action</Link></li>
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="#">Discussion Forum</a></li>
+                                <li><Link className="dropdown-item" to="#">Discussion Forum</Link></li>
                             </ul>
                         </li>
                     </ul>

@@ -13,6 +13,7 @@ const Event = require('../models/Event');
 // Route 1 : fetching events from the database, route -> /api/event/fetchevents : login required 
 router.get('/fetchevents', fetchuser, async (req, res) => {
 
+    // try and catch block to being safer
     try {
         const events = await Event.find()
         res.json(events);
@@ -56,7 +57,7 @@ router.post('/addevent', fetchuser, [
     }
 
 })
-module.exports = router;
+
 
 //Route : 3 updating notes by the student -> /api/event/updatevent -> login is required
 router.put('/updatevent/:id', fetchuser, async (req, res) => {
@@ -94,3 +95,5 @@ router.put('/updatevent/:id', fetchuser, async (req, res) => {
 
     res.json({ event });
 });
+
+module.exports = router;
