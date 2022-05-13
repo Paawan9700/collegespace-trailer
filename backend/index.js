@@ -19,3 +19,5 @@ app.use('/api/event', require('./routes/events'));
 app.listen(port, () => {
   console.log(`CollegeSpace backend listening on port ${port}`)
 })
+
+// Testing
