@@ -12,6 +12,8 @@ connectToMongo();
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/user', require('./routes/users'));
 app.use('/api/event', require('./routes/events'));
+app.use('/api/discussionforum', require('./routes/questions'));
+app.use('./api/discussionforum', require('./routes/answers'));
 
 
 
