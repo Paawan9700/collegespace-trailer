@@ -3,7 +3,7 @@ import EventContext from './EventContext';
 
 const EventState = (props) => {
 
-  const initialEvents = []
+  const initialEvents = [];
   const [events, setevents] = useState(initialEvents)
 
   // to be changed later............................
@@ -25,21 +25,17 @@ const EventState = (props) => {
 
   // add events in the database to permanently saved it
   const addEvent = async (newEvent) => {
-
-    const response = await fetch(`${host}/api/event/addevent`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI1NTg5ZWJmY2ViNjViZTRlYzVkZDBlIn0sImlhdCI6MTY1MDYzMTYyNX0.LTYYU6RYQA6BHk_mTmHwwMOnNwYXTn-eZp5vvPPSjzY"
-      },
-      body: JSON.stringify(newEvent) 
-    }); 
-
-    const addedEvent = await response.json();
-
+    // const response = await fetch(`${host}/api/event/addevent`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI1NTg5ZWJmY2ViNjViZTRlYzVkZDBlIn0sImlhdCI6MTY1MDYzMTYyNX0.LTYYU6RYQA6BHk_mTmHwwMOnNwYXTn-eZp5vvPPSjzY"
+    //   },
+    //   body: JSON.stringify(newEvent) 
+    // }); 
+     
     console.log("adding a new event");
-    setevents(events.concat(addedEvent)) // concat returns an array
+    setevents(events.concat(newEvent)) // concat returns an array
   }
 
   // edit a event  logic to edit any shown event
@@ -50,7 +46,7 @@ const EventState = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem('token')
+        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI1NTg5ZWJmY2ViNjViZTRlYzVkZDBlIn0sImlhdCI6MTY1MDYzMTYyNX0.LTYYU6RYQA6BHk_mTmHwwMOnNwYXTn-eZp5vvPPSjzY"
       },
 
       // this basiclly means {title : title, description : description, tag : tag}
@@ -68,7 +64,7 @@ const EventState = (props) => {
     for (let index = 0; index < newEvents.length; index++) {
       if (newEvents[index]._id === id) {
         newEvents[index].title = title;
-        newEvents[index].description = description;
+        newEvents[index].description = description; 
         newEvents[index].tag = tag
         break;
       }

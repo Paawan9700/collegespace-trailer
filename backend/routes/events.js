@@ -39,8 +39,8 @@ router.post('/addevent', fetchuser, [
         return res.status(400).json({ errors: errors.array() });
     }
 
-    try {
-        const { title, description, tag } = req.body;
+    // try {
+        const { description, title, tag } = req.body;
 
         const newEvent = new Event({
             title: title,
@@ -51,10 +51,10 @@ router.post('/addevent', fetchuser, [
         const savedEvent = await newEvent.save();
         res.send(savedEvent);
 
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send("some error occured");
-    }
+    // } catch (error) {
+    //     console.error(error.message);
+    //     res.status(500).send("some error occured");
+    // }
 
 })
 

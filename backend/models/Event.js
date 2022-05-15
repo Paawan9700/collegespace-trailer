@@ -13,7 +13,6 @@ const EventSchema = new mongoose.Schema({
     },
     tag: {
         type: String,
-        required: true,
         maxlength: 50
     },
     Date: {

@@ -8,9 +8,8 @@ const AddEvent = () => {
     const [event, setevent] = useState({ title: "", description: "", tag: "" })
     const handleClick = (e) => {
         e.preventDefault();
+        console.log(event);
         addEvent(event);
-
-        setevent({ title: "", description: "", tag: "" });
     }
 
     const onChange = (e) => {
