@@ -25,8 +25,8 @@ function App() {
               <Route exact path='/about' element={<About />} />
               <Route exact path='/login' element={<Login />} />
               <Route exact path='/signup' element={<Signup />} />
-              <Route exact path='/discussionforum' element={<DiscussionForum />} />
-              <Route exact path='/previousyearpapers' element={<PreviousYearPapers />} />
+              {/* <Route exact path='/discussionforum' element={<DiscussionForum />} /> */}
+              {/* <Route exact path='/previousyearpapers' element={<PreviousYearPapers />} /> */}
             </Routes>
           </div>
         </Router>
