@@ -10,6 +10,8 @@ const AddEvent = () => {
         e.preventDefault();
         console.log(event);
         addEvent(event);
+
+        setevent({ title: "", description: "", tag: "" })
     }
 
     const onChange = (e) => {
@@ -19,22 +21,22 @@ const AddEvent = () => {
 
     return (
         <div className='my-10'>
-            <h1>Add New Events</h1>
+            <h1>Add New Event</h1>
 
             <form className='my-3'>
                 <div className="mb-3">
-                    <label htmlFor="title" className="form-label">Title</label>
-                    <input type="text" className="form-control" id="title" name='title' onChange={onChange} />
+                    <label htmlFor="title" className="form-label">Event Title</label>
+                    <input type="text" className="form-control" id="title" name='title' value={event.title} onChange={onChange} minLength={5} required />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="description" className="form-label">Description</label>
-                    <input type="text" className="form-control" id="description" name='description' onChange={onChange} />
+                    <label htmlFor="description" className="form-label">Event Description</label>
+                    <input type="text" className="form-control" id="description" name='description' value={event.description} onChange={onChange} minLength={5} required />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="tag" className="form-label">Tag</label>
-                    <input type="text" className="form-control" id="tag" name='tag' onChange={onChange} />
+                    <label htmlFor="tag" className="form-label">Event Tag</label>
+                    <input type="text" className="form-control" id="tag" name='tag' value={event.tag} onChange={onChange} minLength={5} required />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Event</button>
+                <button disabled={event.title.length < 5 || event.description.length < 5} type="submit" className="btn btn-primary" onClick={handleClick}>Add Event</button>
             </form>
         </div >
     )

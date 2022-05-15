@@ -1,13 +1,14 @@
-import React, { useContext, useEffect, useRef, useState} from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import EventContext from '../context/events/EventContext'
 import AddEvent from './AddEvent';
 import { EventItem } from './EventItem';
 
 export const Events = () => {
     const context = useContext(EventContext);
-    const { events, getevents , editEvent} = context;
+    const { events, getevents, editEvent } = context;
 
     const ref = useRef(null);
+    const refClose = useRef(null);
     useEffect(() => {
         getevents();
         // eslint-disable-next-line
@@ -21,7 +22,8 @@ export const Events = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        // editEvent({})
+        editEvent(event._id, event.title, event.description, event.tag);
+        refClose.current.click();
     }
 
     const onChange = (e) => {
@@ -46,27 +48,30 @@ export const Events = () => {
                             <form className='my-3'>
                                 <div className="mb-3">
                                     <label htmlFor="title" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="title" name='title' value = {event.title} onChange={onChange} />
+                                    <input type="text" className="form-control" id="title" name='title' value={event.title} onChange={onChange} minLength={5} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
-                                    <input type="text" className="form-control" id="description" name='description' value = {event.description} onChange={onChange} />
+                                    <input type="text" className="form-control" id="description" name='description' value={event.description} onChange={onChange} minLength={5} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="tag" className="form-label">Tag</label>
-                                    <input type="text" className="form-control" id="tag" name='tag' value = {event.tag} onChange={onChange} />
+                                    <input type="text" className="form-control" id="tag" name='tag' value={event.tag} onChange={onChange} minLength={5} required />
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleClick}>Update Event</button>
+                            <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button disabled={event.title.length < 5 || event.description.length < 5} type="button" className="btn btn-primary" onClick={handleClick}>Update Event</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="row my-3">
                 <h1>College Events</h1>
+                <div className="container mx-1minLength={5} required ">
+                    {events.length === 0 && "No Event Scheduled"}
+                </div>
                 {events.map((event) => {
                     return <EventItem key={event._id} updateEvent={updateEvent} event={event} />;
                 })}

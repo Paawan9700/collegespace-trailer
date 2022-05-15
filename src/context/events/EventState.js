@@ -7,7 +7,7 @@ const EventState = (props) => {
   const [events, setevents] = useState(initialEvents)
 
   // to be changed later............................
-  const host = "http://localhost:5000";
+  const host = 'http://localhost:5000'
   //................................................
 
   // fetching events from the backend \\ API call \\ /api/event/fetchevents
@@ -25,17 +25,17 @@ const EventState = (props) => {
 
   // add events in the database to permanently saved it
   const addEvent = async (newEvent) => {
-    // const response = await fetch(`${host}/api/event/addevent`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI1NTg5ZWJmY2ViNjViZTRlYzVkZDBlIn0sImlhdCI6MTY1MDYzMTYyNX0.LTYYU6RYQA6BHk_mTmHwwMOnNwYXTn-eZp5vvPPSjzY"
-    //   },
-    //   body: JSON.stringify(newEvent) 
-    // }); 
-     
-    console.log("adding a new event");
-    setevents(events.concat(newEvent)) // concat returns an array
+    const response = await fetch(`${host}/api/event/addevent`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI1NTg5ZWJmY2ViNjViZTRlYzVkZDBlIn0sImlhdCI6MTY1MDYzMTYyNX0.LTYYU6RYQA6BHk_mTmHwwMOnNwYXTn-eZp5vvPPSjzY"
+      },
+      body: JSON.stringify(newEvent) 
+    }); 
+
+    const addedEvent = await response.json();
+    setevents(events.concat(addedEvent)) // concat returns an array
   }
 
   // edit a event  logic to edit any shown event
@@ -44,6 +44,7 @@ const EventState = (props) => {
     // making sure that all changes should also reflect in the backend also
     const response = await fetch(`${host}/api/event/updatevent/${id}`, {
       method: 'PUT',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
         'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI1NTg5ZWJmY2ViNjViZTRlYzVkZDBlIn0sImlhdCI6MTY1MDYzMTYyNX0.LTYYU6RYQA6BHk_mTmHwwMOnNwYXTn-eZp5vvPPSjzY"
@@ -54,8 +55,8 @@ const EventState = (props) => {
     });
 
     const editEvent = await response.json();
-    console.log(editEvent);
-    // in react you update directly, you have to make a copy 
+    // console.log(editEvent);
+    // in react you can't update directly, you have to make a copy 
     const newEvents = JSON.parse(JSON.stringify(events))
 
     // logic to edit the notes of a particular user at the client side is here:
