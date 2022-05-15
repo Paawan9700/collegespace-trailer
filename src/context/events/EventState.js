@@ -55,7 +55,7 @@ const EventState = (props) => {
     });
 
     const editEvent = await response.json();
-    // console.log(editEvent);
+    console.log(editEvent);
     // in react you can't update directly, you have to make a copy 
     const newEvents = JSON.parse(JSON.stringify(events))
 

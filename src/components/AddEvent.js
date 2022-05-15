@@ -16,7 +16,7 @@ const AddEvent = () => {
 
     const onChange = (e) => {
         // spread operator (this -> ...)
-        setevent({ ...event, [e.target.name]: [e.target.value] })
+        setevent({ ...event, [e.target.name]: e.target.value })
     }
 
     return (
@@ -26,7 +26,7 @@ const AddEvent = () => {
             <form className='my-3'>
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Event Title</label>
-                    <input type="text" className="form-control" id="title" name='title' value={event.title} onChange={onChange} minLength={5} required />
+                    <input type="text" className="form-control" id="title" name='title' value={event.title} onChange={onChange} minLength={3} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Event Description</label>
@@ -34,9 +34,9 @@ const AddEvent = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="tag" className="form-label">Event Tag</label>
-                    <input type="text" className="form-control" id="tag" name='tag' value={event.tag} onChange={onChange} minLength={5} required />
+                    <input type="text" className="form-control" id="tag" name='tag' value={event.tag} onChange={onChange} minLength={2} required />
                 </div>
-                <button disabled={event.title.length < 5 || event.description.length < 5} type="submit" className="btn btn-primary" onClick={handleClick}>Add Event</button>
+                <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Event</button>
             </form>
         </div >
     )

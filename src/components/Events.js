@@ -28,7 +28,7 @@ export const Events = () => {
 
     const onChange = (e) => {
         // spread operator (this -> ...)
-        setevent({ ...event, [e.target.name]: [e.target.value] })
+        setevent({ ...event, [e.target.name]: e.target.value })
     }
 
     return (
@@ -48,7 +48,7 @@ export const Events = () => {
                             <form className='my-3'>
                                 <div className="mb-3">
                                     <label htmlFor="title" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="title" name='title' value={event.title} onChange={onChange} minLength={5} required />
+                                    <input type="text" className="form-control" id="title" name='title' value={event.title} onChange={onChange} minLength={3} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
@@ -56,20 +56,20 @@ export const Events = () => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="tag" className="form-label">Tag</label>
-                                    <input type="text" className="form-control" id="tag" name='tag' value={event.tag} onChange={onChange} minLength={5} required />
+                                    <input type="text" className="form-control" id="tag" name='tag' value={event.tag} onChange={onChange} minLength={2} required />
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button disabled={event.title.length < 5 || event.description.length < 5} type="button" className="btn btn-primary" onClick={handleClick}>Update Event</button>
+                            <button  type="button" className="btn btn-primary" onClick={handleClick}>Update Event</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="row my-3">
                 <h1>College Events</h1>
-                <div className="container mx-1minLength={5} required ">
+                <div className="container mx-1">
                     {events.length === 0 && "No Event Scheduled"}
                 </div>
                 {events.map((event) => {

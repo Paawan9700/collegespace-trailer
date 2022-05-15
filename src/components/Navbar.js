@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link, useLocation} from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 
 export const Navbar = () => {
     let location = useLocation();
-    
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -25,16 +25,16 @@ export const Navbar = () => {
                                 More
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><Link className="dropdown-item" to="#">Previous Years Papers</Link></li>
+                                <li><Link className="dropdown-item" to="/previousyearpapers">Previous Years Papers</Link></li>
                                 <li><Link className="dropdown-item" to="#">Another action</Link></li>
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><Link className="dropdown-item" to="#">Discussion Forum</Link></li>
+                                <li><Link className="dropdown-item" to="/discussionforum">Discussion Forum</Link></li>
                             </ul>
                         </li>
                     </ul>
                     <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        <Link className="btn btn-outline-primary mx-2" to="/login" role="button">Login</Link>
+                        <Link className="btn btn-outline-primary mx-2" to="/signup" role="button">SignUp</Link>
                     </form>
                 </div>
             </div>
