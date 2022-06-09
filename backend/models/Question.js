@@ -1,11 +1,13 @@
+// making a model for data where all information regarding a particular question is being saved 
 const mongoose = require('mongoose');
 
 // for backend validation
 const Joi = require('joi');
 
-// schema or blue print
+// schema or blue print we made before doing any particular task
 const QuestionSchema = new mongoose.Schema({
     user: {
+        // reference is user just to define that this question is belonging to a particular user
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
@@ -32,8 +34,10 @@ const QuestionSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
+// model is made using QuestionSchema which we have made above
 const Question = mongoose.model("Question", QuestionSchema);
 
+// this is a validation function and (rather i can also use express-validator provided by the exprss as one of its package)
 const validateQuestion = (question) => {
     const schema = Joi.object({
         user: Joi.objectId(),
